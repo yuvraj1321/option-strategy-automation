@@ -175,14 +175,11 @@ if results:
         print(f"  🎯 Target: ₹{tgt}  |  🛑 Stop Loss: ₹{sl}")
 
         telegram_message = (
-            f"🏆 Best Option Recommendation ({final_output['trend'].upper()} Trend)\n"
-            f"📈 Symbol: {final_output['symbol']}\n"
-            f"📅 Expiry: {final_output['expiry']}\n"
-            f"💡 Type: {final_output['type']} | Strike: {final_output['strike']}\n"
-            f"💰 CMP: ₹{final_output['cmp']} | Model Price: ₹{final_output['model_price']}\n"
-            f"📊 IV: {final_output['iv']}% | Δ: {final_output['delta']} | θ: {final_output['theta']} | Vega: {final_output['vega']}\n"
-            f"📦 Volume: {final_output['volume']} | Success Score: {final_output['success_score']}%\n"
-            f"🎯 Target: ₹{final_output['target']} | 🛑 Stoploss: ₹{final_output['stoploss']}"
+            f"\n🏆 Best Overall Recommendation ({trend_map[symbol].upper()} Trend):"
+            f"\n  Symbol: {symbol} | Expiry: {expiry} | Type: {typ} | Strike: {strike}  |  CMP: ₹{ltp}  |  Model: ₹{theo:.2f}"
+            f"\n IV: {iv:.2f}%  |  Δ: {delta:.2f}  |  θ: {theta:.2f}  |  Vega: {vega:.2f}"
+            f"\n  Volume: {vol}  |  Success Score: {int(score)}%"
+            f"\n  🎯 Target: ₹{tgt}  |  🛑 Stop Loss: ₹{sl}"
         )
 
         crypto_telegram_bot.send_message_telegram(telegram_message)
