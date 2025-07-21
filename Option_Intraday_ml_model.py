@@ -4,6 +4,7 @@ from nsepython import *
 from scipy.stats import norm
 import yfinance as yf
 import pandas as pd
+import crypto_telegram_bot
 
 # --- Parameters ---
 RISK_FREE_RATE = 0.068  # 6.8%
@@ -172,6 +173,19 @@ if results:
         print(f"  IV: {iv:.2f}%  |  Δ: {delta:.2f}  |  θ: {theta:.2f}  |  Vega: {vega:.2f}")
         print(f"  Volume: {vol}  |  Success Score: {int(score)}%")
         print(f"  🎯 Target: ₹{tgt}  |  🛑 Stop Loss: ₹{sl}")
+
+        telegram_message = (
+            f"🏆 Best Option Recommendation ({final_output['trend'].upper()} Trend)\n"
+            f"📈 Symbol: {final_output['symbol']}\n"
+            f"📅 Expiry: {final_output['expiry']}\n"
+            f"💡 Type: {final_output['type']} | Strike: {final_output['strike']}\n"
+            f"💰 CMP: ₹{final_output['cmp']} | Model Price: ₹{final_output['model_price']}\n"
+            f"📊 IV: {final_output['iv']}% | Δ: {final_output['delta']} | θ: {final_output['theta']} | Vega: {final_output['vega']}\n"
+            f"📦 Volume: {final_output['volume']} | Success Score: {final_output['success_score']}%\n"
+            f"🎯 Target: ₹{final_output['target']} | 🛑 Stoploss: ₹{final_output['stoploss']}"
+        )
+
+        crypto_telegram_bot.send_message_telegram(telegram_message)
     else:
         print("❌ No final recommendation matched the market trend.")
 else:
