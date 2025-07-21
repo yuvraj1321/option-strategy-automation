@@ -5,6 +5,11 @@ from scipy.stats import norm
 import yfinance as yf
 import pandas as pd
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+now_ist = datetime.now(ZoneInfo("Asia/Kolkata"))
+
 # --- Parameters ---
 RISK_FREE_RATE = 0.068  # 6.8%
 IV_THRESHOLD = 25       # IV Crush Warning
@@ -60,7 +65,7 @@ def black_scholes_price(S, K, T, r, sigma, option_type="call"):
 
 
 def get_best_option(symbol):
-    now = datetime.datetime.now().time()
+    now = now_ist.time()
     if now < TRADING_START or now > TRADING_END:
         print(f"\n⏳ Outside trading window ({TRADING_START} - {TRADING_END}). Skipping {symbol}.")
         return
