@@ -2,9 +2,9 @@ name: Run Intraday Option Model
 
 on:
   schedule:
-    - cron: '40 4 * * *'   # 10:10 AM IST
-    - cron: '43 4 * * *'   # 10:13 AM IST
-    - cron: '45 4 * * *'   # 10:15 AM IST
+    - cron: '0 4 * * *'   # 9:30 AM IST
+    - cron: '15 4 * * *'  # 9:45 AM IST
+    - cron: '30 4 * * *'  # 10:00 AM IST
   workflow_dispatch:        # allows manual run
   push:                      # Runs on every push
 
