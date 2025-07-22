@@ -26,4 +26,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Option Strategy Script
+        env:
+          TELEGRAM_SECRET_TOKEN: ${{ secrets.TELEGRAM_SECRET_TOKEN }}
         run: python Option_Intraday_ml_model.py
