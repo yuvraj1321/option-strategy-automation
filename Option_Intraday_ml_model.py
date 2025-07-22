@@ -137,6 +137,16 @@ def get_best_option(symbol):
             print(f"  IV: {iv:.2f}%  |  Δ: {delta:.2f}  |  θ: {theta:.2f}  |  Vega: {vega:.2f}")
             print(f"  Volume: {vol}  |  Success Score: {int(score)}%")
             print(f"  🎯 Target: ₹{tgt}  |  🛑 Stop Loss: ₹{sl}")
+
+            telegram_message_1 = (
+            f"\n🟢 Best {label.upper()} Option:"
+            f"  Symbol: {symbol} | Expiry: {expiry} | Type: {typ} | Strike: {strike}  |  CMP: ₹{ltp}  |  Model: ₹{theo:.2f}"
+            f"  IV: {iv:.2f}%  |  Δ: {delta:.2f}  |  θ: {theta:.2f}  |  Vega: {vega:.2f}"
+            f"  Volume: {vol}  |  Success Score: {int(score)}%"
+            f"  🎯 Target: ₹{tgt}  |  🛑 Stop Loss: ₹{sl}"
+            )
+
+            crypto_telegram_bot.send_message_telegram(telegram_message_1)
             results.append(data)
 
         print_option("CALL", best_call)
